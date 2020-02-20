@@ -62,9 +62,15 @@ def auto_release(version, target_commitish):
         )
 
         click.secho(f"Current Tag: {current_tag}", fg="yellow", bold=True)
-        click.secho(f"New Tag:  {emojize(':star2:', use_aliases=True)} {new_tag} {emojize(':star2:', use_aliases=True)}", fg="green", bold=True)
+        click.secho(
+            f"New Tag:  {emojize(':star2:', use_aliases=True)} {new_tag} {emojize(':star2:', use_aliases=True)}",
+            fg="green",
+            bold=True,
+        )
         click.echo("")
-        click.secho(f"Changelog {emojize(':page_with_curl:',use_aliases=True)}", bold=True)
+        click.secho(
+            f"Changelog {emojize(':page_with_curl:',use_aliases=True)}", bold=True
+        )
         click.echo(message + "\n")
 
         if click.confirm("Do you want to continue?"):
@@ -77,7 +83,9 @@ def auto_release(version, target_commitish):
                 prerelease=False,
                 target_commitish=target_commitish,
             )
-            click.secho(f"Release successful! {emojize(':grin:', use_aliases=True)}", bold=True)
+            click.secho(
+                f"Release successful! {emojize(':grin:', use_aliases=True)}", bold=True
+            )
             click.echo(f"Link to release page: {new_release.html_url}\n")
         else:
             click.echo(f"OK bye {emojize(':disappointed:', use_aliases=True)} \n")
