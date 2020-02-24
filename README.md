@@ -1,13 +1,24 @@
 # Automated Github Releases
 
 ## :heavy_check_mark: Prerequisites
-TBD
+* Python 3.5+
+
+
+
+
 
 ## :gear: Installation 
-TBD
+To install, run:
+
+```bash
+$ pip install -e git+https://github.com/sabpereira/github-auto-release.git#egg=github-auto-release
+```
 
 
 ## :wrench: How to use
+** Note: Make sure environment variables `GITHUB_TOKEN` and `REPO` are set. **
+
+
 Run `new-release` followed by the desired version bump type: `major`, `minor`, `patch`. 
 
 For example, the following will allow you to create tag bumped by a minor version:
