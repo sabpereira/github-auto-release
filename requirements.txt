@@ -2,3 +2,4 @@ PyGithub~=1.45
 semver~=2.9.0
 click~=7.0
 colorama~=0.4.3
+emoji~=0.5.4
