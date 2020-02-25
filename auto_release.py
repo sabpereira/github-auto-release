@@ -46,7 +46,7 @@ def auto_release(version, target_commitish):
         )
 
     g = github.Github(github_token)
-    github_repo = g.get_user().get_repo(repo)
+    github_repo = g.get_repo(repo)
     current_tag = github_repo.get_latest_release().tag_name
     semver_pattern = r"\bv(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b"
 
