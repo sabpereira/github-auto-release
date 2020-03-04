@@ -20,5 +20,10 @@ setup(
     install_requires=requirements,
     long_description=long_description,
     long_description_content_type="text/markdown",
-    entry_points={"console_scripts": ["new-release=auto_release:auto_release"]},
+    entry_points={
+        "console_scripts": [
+            "new-release=auto_release:auto_release",
+            "sentry-release=sentry_release:sentry_release",
+        ]
+    },
 )
