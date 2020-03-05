@@ -1,4 +1,4 @@
-# Automated Github and Sentry Releases
+# Automated GitHub and Sentry Releases
 
 ## :heavy_check_mark: Prerequisites
 * Python 3.5+
@@ -22,7 +22,7 @@ $ curl -sL https://sentry.io/get-cli/ | bash
 ```
 
 
-## :wrench: How to use - Github releases
+## :wrench: How to use - GitHub releases
 > **_NOTE:_** Make sure environment variables `GITHUB_TOKEN` and `REPO` are set.
 
 
