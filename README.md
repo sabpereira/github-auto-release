@@ -34,6 +34,14 @@ For example, the following will allow you to create tag bumped by a minor versio
 $ new-release minor
 ```
 
+### Target commitish option
+
+The default commitish value where the Git tag is created from is the `master` branch. To specify a different commitish value, run with the `--target_commitish` option. For example:
+
+```bash
+$ new-release minor --target_commitish eb6bc2c21ff896f159da74608f0a96330419a3e5
+```
+
 ## :hammer_and_wrench: How to use - Sentry releases
 > **_NOTE:_** Make sure environment variables `SENTRY_AUTH_TOKEN`, `SENTRY_ORG` and `SENTRY_PROJECT` are set. 
 You must also have the latest release version tag available as `APP_VERSION`.
@@ -45,13 +53,7 @@ $ sentry-release
 ```
 
 
-### Target commitish option
 
-The default commitish value where the Git tag is created from is the `master` branch. To specify a different commitish value, run with the `--target_commitish` option. For example:
-
-```bash
-$ new-release minor --target_commitish eb6bc2c21ff896f159da74608f0a96330419a3e5
-```
 
 ## :question: Usage help
 
