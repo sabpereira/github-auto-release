@@ -49,7 +49,7 @@ def sentry_release():
                 example="SENTRY_ORG=project-name",
             )
         )
-    rc = subprocess.run(f"{os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}/sentry-release.sh")
+    rc = subprocess.run(f"{os.path.dirname(os.path.abspath(__file__))}/sentry-release.sh")
 
 
 if __name__ == "__main__":
