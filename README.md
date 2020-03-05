@@ -1,8 +1,7 @@
-# Automated Github Releases
+# Automated Github and Sentry Releases
 
 ## :heavy_check_mark: Prerequisites
 * Python 3.5+
-
 
 
 
@@ -14,9 +13,17 @@ To install, run:
 $ pip install -e git+https://github.com/sabpereira/github-auto-release.git#egg=github-auto-release
 ```
 
+For the Sentry releases, you must install the Sentry CLI. You can find the instructions [here.](https://docs.sentry.io/cli/installation/#automatic-installation)
 
-## :wrench: How to use
-** Note: Make sure environment variables `GITHUB_TOKEN` and `REPO` are set. **
+If you are on OS X or Linux, you can use the automated downloader which will fetch the latest release version for you and install it:
+
+```bash
+$ curl -sL https://sentry.io/get-cli/ | bash
+```
+
+
+## :wrench: How to use - Github releases
+> **_NOTE:_** Make sure environment variables `GITHUB_TOKEN` and `REPO` are set.
 
 
 Run `new-release` followed by the desired version bump type: `major`, `minor`, `patch`. 
@@ -26,6 +33,17 @@ For example, the following will allow you to create tag bumped by a minor versio
 ```bash
 $ new-release minor
 ```
+
+## :hammer_and_wrench: How to use - Sentry releases
+> **_NOTE:_** Make sure environment variables `SENTRY_AUTH_TOKEN`, `SENTRY_ORG` and `SENTRY_PROJECT` are set. 
+You must also have the latest release version tag available as `APP_VERSION`.
+
+Run the following:
+
+```bash
+$ sentry-release 
+```
+
 
 ### Target commitish option
 
