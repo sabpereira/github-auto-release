@@ -3,6 +3,10 @@
 ## :heavy_check_mark: Prerequisites
 * Python 3.5+
 
+#### To use Sentry releases
+* curl
+* sentry-cli 
+
 
 
 
@@ -39,7 +43,7 @@ $ new-release minor
 The default commitish value where the Git tag is created from is the `master` branch. To specify a different commitish value, run with the `--target_commitish` option. For example:
 
 ```bash
-$ new-release minor --target_commitish eb6bc2c21ff896f159da74608f0a96330419a3e5
+$ new-release minor --target_commitish eb6bc2c21ff896f159da74608f0a96330419a3g5
 ```
 
 ## :hammer_and_wrench: How to use - Sentry releases
