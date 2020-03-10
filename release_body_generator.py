@@ -43,6 +43,21 @@ def clean_tag(full_commit_message, separator, leading_character=""):
     return tag
 
 
+def create_commit_message_dict(commit_objects_list):
+    """
+    Takes in a list of commit objects (or None if it doesn't exist)
+
+    Parses through each commit message per object and pulls out the clean tag and clean commit message.
+
+    Returns a dictionary with:
+        Key:   A valid tag
+        Value: List of commit messages that fall under that tag
+
+    Returns an empty dictionary if no commits exist
+
+    """
+
+
 def create_release_body(repo, target_commitish="master"):
     """
     Takes in repo and target branch/commit for release, master is default.
