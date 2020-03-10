@@ -7,6 +7,42 @@ import os
 import github
 
 
+def clean_commit_message(full_commit_message, separator):
+    """
+    Takes in a commit message string and a separator indicating the end of the prefix tag and start of message.
+    If there is a prefix tag, returns the message excluding it.  Ex. "[Added] New method" returns "New method"
+    If there is not a prefix tag, returns original. Ex. "New method" returns "New method"
+
+    """
+    seperated_commit = full_commit_message.partition(separator)
+
+    if seperated_commit[2]:
+        return seperated_commit[2]
+    else:
+        return full_commit_message
+
+
+def clean_tag(full_commit_message, separator, leading_character=""):
+    """
+    Takes in a commit message string and a separator for the end of the prefix tag, optional char for start of tag.
+    If there is a prefix tag, and it is valid, returns capitalized version.  Ex. "[ADdeD] New method" returns "Added"
+    If there is a prefix tag, and it is not valid, returns "Other".
+    If there is not a prefix tag, returns "Other"
+
+    """
+    tag = "Other"
+    valid_tags = ["Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"]
+
+    split_commit = full_commit_message.split(sep=separator, maxsplit=1)
+
+    possible_tag = split_commit[0].lstrip(leading_character).capitalize()
+
+    if len(split_commit) > 1 and possible_tag in valid_tags:
+        tag = possible_tag
+
+    return tag
+
+
 def create_release_body(repo, target_commitish="master"):
     """
     Takes in repo and target branch/commit for release, master is default.
