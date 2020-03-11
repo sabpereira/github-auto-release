@@ -7,8 +7,6 @@ from collections import defaultdict
 
 import github
 
-# https://docs.python.org/3/library/stdtypes.html#str.partition
-
 
 def clean_commit_message(full_commit_message, separator):
     """
@@ -78,8 +76,7 @@ def create_release_body(
 ):
     """
     Takes in repo and target branch/commit for release, master is default.
-    Takes in separator and leading_character parameters based on tag formatting, [TAG] is my default.
-
+    Takes in separator and leading_character parameters based on tag formatting, [TAG] is the default.
     Returns a string with the commit messages separated by tag and listed by bullet points.
     """
 
@@ -96,7 +93,7 @@ def create_release_body(
     bullets_string = "\n   * "
 
     for key in commits_dict:
-        commits_dict[key].insert(0, f"{key}:")
+        commits_dict[key].insert(0, f"#### {key}:")
         commits_and_tag = bullets_string.join(commits_dict[key])
         release_body_list.append(commits_and_tag)
 
