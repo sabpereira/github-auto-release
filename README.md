@@ -45,12 +45,12 @@ The default commitish value where the Git tag is created from is the `master` br
 ```bash
 $ new-release minor --target_commitish eb6bc2c21ff896f159da74608f0a96330419a3g5
 ```
-### Change log formatting for GitHub releases
+### Changelog formatting for GitHub release descriptions
 
 Release descriptions are automatically generated based on the commits created and their messages, organized by types of changes.
 We are using [keep a changelog](https://keepachangelog.com/en/1.0.0/) as a reference for the types of changes and their definitions.
 
-For proper formatting of the changelog, all commits to master should be formatted as follows:
+For proper formatting of the changelog descriptions, all commits to master should be formatted as follows:
 
 ```markdown
 [LABEL] MESSAGE
