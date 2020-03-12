@@ -45,6 +45,27 @@ The default commitish value where the Git tag is created from is the `master` br
 ```bash
 $ new-release minor --target_commitish eb6bc2c21ff896f159da74608f0a96330419a3g5
 ```
+### Change log formatting for GitHub releases
+
+Release descriptions are automatically generated based on the commits created and their messages, organized by types of changes.
+We are using [keep a changelog](https://keepachangelog.com/en/1.0.0/) as a reference for the types of changes and their definitions.
+
+For proper formatting of the changelog, all commits to master should be formatted as follows:
+
+```markdown
+[LABEL] MESSAGE
+```
+Where "LABEL" is one of the valid types of changes listed below:
+* **[Added]** for new features.
+* **[Changed]** for changes in existing functionality.
+* **[Deprecated]** for soon-to-be removed features.
+* **[Removed]** for now removed features.
+* **[Fixed]** for any bug fixes.
+* **[Security]** in case of vulnerabilities.
+* **[Other]** for all other changes (or mislabeled changes).
+
+Any commit message that is missing a label or improperly labeled will be automatically labeled as **[Other]**.
+
 
 ## :hammer_and_wrench: How to use - Sentry releases
 > **_NOTE:_** Make sure environment variables `SENTRY_AUTH_TOKEN`, `SENTRY_ORG` and `SENTRY_PROJECT` are set. 
