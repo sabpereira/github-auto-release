@@ -136,19 +136,6 @@ if __name__ == "__main__":
     latest_release_tag = github_repo.get_latest_release().tag_name
     target_commitish = "master"
 
-    commit_objects = github_repo.compare(latest_release_tag, target_commitish).commits
-
-    # for commit_object in commit_objects:
-    #     full_commit_message = commit_object.commit.message
-    #     print(full_commit_message)
-
-
-    commits_dict = create_commit_message_dict(
-        commit_objects_list=commit_objects, separator="] ", leading_character="["
-    )
-
     release_body = create_release_body(github_repo)
 
     print(release_body)
-
-    # print(create_release_body(repo))
