@@ -18,9 +18,9 @@ def clean_commit_message(full_commit_message, separator):
     seperated_commit = full_commit_message.partition(separator)
 
     if seperated_commit[2]:
-        return seperated_commit[2]
+        return seperated_commit[2].partition('\n\n')[0]
     else:
-        return full_commit_message
+        return full_commit_message.partition('\n\n')[0]
 
 
 def clean_tag(full_commit_message, separator, leading_character=""):
@@ -137,6 +137,11 @@ if __name__ == "__main__":
     target_commitish = "master"
 
     commit_objects = github_repo.compare(latest_release_tag, target_commitish).commits
+
+    # for commit_object in commit_objects:
+    #     full_commit_message = commit_object.commit.message
+    #     print(full_commit_message)
+
 
     commits_dict = create_commit_message_dict(
         commit_objects_list=commit_objects, separator="] ", leading_character="["
