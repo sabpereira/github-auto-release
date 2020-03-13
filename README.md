@@ -1,12 +1,17 @@
+# Automated GitHub Releases
+<!---
 # Automated GitHub and Sentry Releases
+-->
+
 
 ## :heavy_check_mark: Prerequisites
 * Python 3.5+
 
+<!---
 #### To use Sentry releases
 * curl
 * sentry-cli 
-
+-->
 
 
 
@@ -17,6 +22,7 @@ To install, run:
 $ pip install -e git+https://github.com/sabpereira/github-auto-release.git#egg=github-auto-release
 ```
 
+<!---
 For the Sentry releases, you must install the Sentry CLI. You can find the instructions [here.](https://docs.sentry.io/cli/installation/#automatic-installation)
 
 If you are on OS X or Linux, you can use the automated downloader which will fetch the latest release version for you and install it:
@@ -24,7 +30,7 @@ If you are on OS X or Linux, you can use the automated downloader which will fet
 ```bash
 $ curl -sL https://sentry.io/get-cli/ | bash
 ```
-
+-->
 
 ## :wrench: How to use - GitHub releases
 > **_NOTE:_** Make sure environment variables `GITHUB_TOKEN` and `REPO` are set.
@@ -67,6 +73,7 @@ Where "LABEL" is one of the valid types of changes listed below:
 Any commit message that is missing a label or improperly labeled will be automatically labeled as **[Other]**.
 
 
+<!---
 ## :hammer_and_wrench: How to use - Sentry releases
 > **_NOTE:_** Make sure environment variables `SENTRY_AUTH_TOKEN`, `SENTRY_ORG` and `SENTRY_PROJECT` are set. 
 You must also have the latest release version tag available as `APP_VERSION`.
@@ -76,7 +83,7 @@ Run the following:
 ```bash
 $ sentry-release 
 ```
-
+-->
 
 
 
