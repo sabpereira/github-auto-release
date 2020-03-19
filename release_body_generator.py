@@ -7,6 +7,8 @@ from collections import defaultdict
 
 import github
 
+from latest_tag_finder import latest_tag
+
 
 def clean_commit_message(full_commit_message, separator):
     """
@@ -18,9 +20,9 @@ def clean_commit_message(full_commit_message, separator):
     seperated_commit = full_commit_message.partition(separator)
 
     if seperated_commit[2]:
-        return seperated_commit[2].partition('\n\n')[0]
+        return seperated_commit[2].partition("\n\n")[0]
     else:
-        return full_commit_message.partition('\n\n')[0]
+        return full_commit_message.partition("\n\n")[0]
 
 
 def clean_tag(full_commit_message, separator, leading_character=""):
@@ -72,16 +74,15 @@ def create_commit_message_dict(commit_objects_list, separator, leading_character
 
 
 def create_release_body(
-    repo, target_commitish="master", separator="] ", leading_character="["
+    repo, latest_tag, target_commitish="master", separator="] ", leading_character="["
 ):
     """
-    Takes in repo and target branch/commit for release, master is default.
+    Takes in repo, latest tag, and target branch/commit for release, master is default.
     Takes in separator and leading_character parameters based on tag formatting, [TAG] is the default.
     Returns a string with the commit messages separated by tag and listed by bullet points.
     """
 
-    latest_release_tag = repo.get_latest_release().tag_name
-    commit_objects_list = repo.compare(latest_release_tag, target_commitish).commits
+    commit_objects_list = repo.compare(latest_tag, target_commitish).commits
 
     commits_dict = create_commit_message_dict(
         commit_objects_list=commit_objects_list,
@@ -105,37 +106,16 @@ def create_release_body(
     return release_body
 
 
-def create_release_body_old(repo, target_commitish="master"):
-    """
-    Takes in repo and target branch/commit for release, master is default.
-    Gathers all commit messages created since the last release to be put into message body.
-    Returns a string with these commit messages separated by bullet points.
-    """
-
-    latest_release_tag = repo.get_latest_release().tag_name
-
-    commit_objects = repo.compare(latest_release_tag, target_commitish).commits
-    commit_message_list = [
-        "* " + commit_object.commit.message for commit_object in commit_objects
-    ]
-
-    release_body = "\n".join(commit_message_list)
-
-    if not release_body:
-        release_body = "No previous commit messages to display"
-
-    return release_body
-
-
 if __name__ == "__main__":
     github_token = os.getenv("GITHUB_TOKEN")
     repo = os.getenv("REPO")
     g = github.Github(github_token)
     github_repo = g.get_repo(repo)
 
+    latest_tag = latest_tag(github_repo)
     latest_release_tag = github_repo.get_latest_release().tag_name
     target_commitish = "master"
 
-    release_body = create_release_body(github_repo)
+    release_body = create_release_body(github_repo, latest_tag)
 
     print(release_body)
