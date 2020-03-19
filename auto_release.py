@@ -8,6 +8,7 @@ import click
 import github
 from emoji import emojize
 
+from latest_tag_finder import latest_tag
 from release_body_generator import create_release_body
 from tag_generator import tag_gen
 
@@ -47,7 +48,7 @@ def auto_release(version, target_commitish):
 
     g = github.Github(github_token)
     github_repo = g.get_repo(repo)
-    current_tag = github_repo.get_latest_release().tag_name
+    current_tag = latest_tag(github_repo)
     semver_pattern = r"\bv(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b"
 
     if re.match(semver_pattern, current_tag) is None:
@@ -58,7 +59,7 @@ def auto_release(version, target_commitish):
     else:
         new_tag = tag_gen(current_tag=current_tag, bump_type=version)
         message = create_release_body(
-            repo=github_repo, target_commitish=target_commitish
+            repo=github_repo, latest_tag=current_tag, target_commitish=target_commitish
         )
 
         click.secho(f"Current Tag: {current_tag}", fg="yellow", bold=True)
