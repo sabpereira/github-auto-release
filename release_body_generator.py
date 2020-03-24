@@ -57,6 +57,18 @@ def create_commit_message_dict(commit_objects_list, separator, leading_character
     """
 
     commits_dict = defaultdict(list)
+    ordered_tags = [
+        "Added",
+        "Changed",
+        "Deprecated",
+        "Removed",
+        "Fixed",
+        "Security",
+        "Other",
+    ]
+
+    for tag in ordered_tags:
+        commits_dict[tag]
 
     for commit_object in commit_objects_list:
         full_commit_message = commit_object.commit.message
@@ -69,6 +81,8 @@ def create_commit_message_dict(commit_objects_list, separator, leading_character
             full_commit_message=full_commit_message, separator=separator
         )
         commits_dict[tag].append(commit_message)
+
+    commits_dict = {k: v for k, v in commits_dict.items() if v}
 
     return commits_dict
 
