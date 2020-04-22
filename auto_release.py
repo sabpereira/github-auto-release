@@ -1,5 +1,6 @@
 """
 Github automated release generator
+
 """
 import os
 import re
