@@ -68,6 +68,7 @@ Where "LABEL" is one of the valid types of changes listed below:
 * **[Removed]** for now removed features.
 * **[Fixed]** for any bug fixes.
 * **[Security]** in case of vulnerabilities.
+* **[Migrations]** for database migrations(need to be stand alone).
 * **[Other]** for all other changes (or mislabeled changes).
 
 Any commit message that is missing a label or improperly labeled will be automatically labeled as **[Other]**.
