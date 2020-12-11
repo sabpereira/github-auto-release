@@ -5,7 +5,9 @@ Release message body generator
 import os
 from collections import defaultdict
 
+import click
 import github
+from emoji import emojize
 
 from latest_tag_finder import latest_tag
 
@@ -34,7 +36,7 @@ def clean_tag(full_commit_message, separator, leading_character=""):
 
     """
     default_tag = "Other"
-    valid_tags = ["Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"]
+    valid_tags = ["Added", "Changed", "Deprecated", "Removed", "Fixed", "Security", "Migrations"]
 
     split_commit = full_commit_message.split(sep=separator, maxsplit=1)
 
@@ -64,6 +66,7 @@ def create_commit_message_dict(commit_objects_list, separator, leading_character
         "Removed",
         "Fixed",
         "Security",
+        "Migrations",
         "Other",
     ]
 
@@ -81,6 +84,13 @@ def create_commit_message_dict(commit_objects_list, separator, leading_character
             full_commit_message=full_commit_message, separator=separator
         )
         commits_dict[tag].append(commit_message)
+
+    contain_migrations = any(v for k, v in commits_dict.items() if k == "Migrations")
+    contain_others = any(v for k, v in commits_dict.items() if k != "Migrations")
+    if contain_migrations and contain_others:
+        raise click.ClickException(
+            f"Release contains Migrations with other type of changes {emojize(':disappointed:', use_aliases=True)} \n"
+        )
 
     commits_dict = {k: v for k, v in commits_dict.items() if v}
 
