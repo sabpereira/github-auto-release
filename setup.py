@@ -15,6 +15,7 @@ with open(path.join(here, "README.md"), encoding="utf-8") as f:
 
 
 setup(
+    name="github-auto-release",
     version="beta",
     python_requires=">=3.5, <4",
     install_requires=requirements,
