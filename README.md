@@ -19,7 +19,7 @@
 To install, run:
 
 ```bash
-$ pip install -e git+https://github.com/sabpereira/github-auto-release.git#egg=github-auto-release
+$ pip install -e git+https://github.com/belvo-finance/github-auto-release.git#egg=github-auto-release
 ```
 
 <!---
