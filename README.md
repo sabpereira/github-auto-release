@@ -36,6 +36,11 @@ $ curl -sL https://sentry.io/get-cli/ | bash
 > **_NOTE:_** Make sure environment variables `GITHUB_TOKEN` and `REPO` are set.
 
 
+For GitHub tokens see: [Github tokens](https://github.com/settings/tokens).
+
+When setting `REPO` env var don't forget to add the owner as in `belvo-finance/github-auto-release`, you'll get a 404 error otherwise.
+
+
 Run `new-release` followed by the desired version bump type: `major`, `minor`, `patch`. 
 
 For example, the following will allow you to create tag bumped by a minor version:
