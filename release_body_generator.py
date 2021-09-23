@@ -98,7 +98,7 @@ def create_commit_message_dict(commit_objects_list, separator, leading_character
 
 
 def create_release_body(
-    repo, latest_tag, target_commitish="master", separator="] ", leading_character="["
+    repo, latest_tag, target_commitish="master", separator="]", leading_character="["
 ):
     """
     Takes in repo, latest tag, and target branch/commit for release, master is default.
