@@ -3,6 +3,7 @@ Release message body generator
 """
 
 import os
+import re
 from collections import defaultdict
 
 import click
@@ -22,9 +23,15 @@ def clean_commit_message(full_commit_message, separator):
     seperated_commit = full_commit_message.partition(separator)
 
     if seperated_commit[2]:
-        return seperated_commit[2].partition("\n\n")[0]
+        message = seperated_commit[2].partition("\n\n")[0]
     else:
-        return full_commit_message.partition("\n\n")[0]
+        message = full_commit_message.partition("\n\n")[0]
+
+    for pattern in [" ", ": "]:
+        if message.startswith(pattern):
+            message = re.sub(pattern, "", message, 1)
+
+    return message
 
 
 def clean_tag(full_commit_message, separator, leading_character=""):
@@ -36,7 +43,7 @@ def clean_tag(full_commit_message, separator, leading_character=""):
 
     """
     default_tag = "Other"
-    valid_tags = ["Added", "Changed", "Deprecated", "Removed", "Fixed", "Security", "Migrations"]
+    valid_tags = ["Added", "Changed", "Deprecated", "Removed", "Fixed", "Security", "Migrations", "Docs"]
 
     split_commit = full_commit_message.split(sep=separator, maxsplit=1)
 
@@ -67,6 +74,7 @@ def create_commit_message_dict(commit_objects_list, separator, leading_character
         "Fixed",
         "Security",
         "Migrations",
+        "Docs",
         "Other",
     ]
 
