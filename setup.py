@@ -18,6 +18,7 @@ setup(
     name="github-auto-release",
     version="beta",
     python_requires=">=3.5, <4",
+    py_modules=[],
     install_requires=requirements,
     long_description=long_description,
     long_description_content_type="text/markdown",
