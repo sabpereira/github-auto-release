@@ -21,6 +21,7 @@ To install, run:
 ```bash
 $ pip install -e git+https://github.com/belvo-finance/github-auto-release.git#egg=github-auto-release
 ```
+> **_NOTE:_** If you are on Ubuntu and the command is not found, try installing with `sudo`
 
 <!---
 For the Sentry releases, you must install the Sentry CLI. You can find the instructions [here.](https://docs.sentry.io/cli/installation/#automatic-installation)
